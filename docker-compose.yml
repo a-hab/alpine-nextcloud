@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  nextcloud:
+    build: nextcloud
+    volumes:
+      - "/var/www/nextcloud"
+
+  nginx:
+    build: nginx 
+    volumes_from:
+      - nextcloud:rw
+
+  fpm:
+    build: fpm
+    volumes_from:                                                                                                                           
+      - nextcloud:rw
